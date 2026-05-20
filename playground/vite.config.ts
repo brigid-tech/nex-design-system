@@ -28,6 +28,24 @@ export default defineConfig({
         find: "@nexus-creator-app/design-system",
         replacement: path.resolve(__dirname, "../src/index.ts"),
       },
+      // Resolve deps used by design-system source from playground's node_modules
+      {
+        find: "clsx",
+        replacement: path.resolve(__dirname, "node_modules/clsx"),
+      },
+      {
+        find: "tailwind-merge",
+        replacement: path.resolve(__dirname, "node_modules/tailwind-merge"),
+      },
+      {
+        find: "class-variance-authority",
+        replacement: path.resolve(__dirname, "node_modules/class-variance-authority"),
+      },
     ],
+  },
+  server: {
+    fs: {
+      allow: [path.resolve(__dirname, "..")],
+    },
   },
 });
