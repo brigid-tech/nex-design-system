@@ -1,4 +1,4 @@
-# @nexus-creator/design-system
+# @nexus-creator-app/design-system
 
 Design system oficial do Nexus Creator — dark-first, cyan↔violeta, arcane editorial.
 Compatível com **Tailwind CSS v3** e **shadcn/ui**.
@@ -7,10 +7,26 @@ Compatível com **Tailwind CSS v3** e **shadcn/ui**.
 
 ## Instalação
 
+### Pré-requisito — autenticar com GitHub Packages
+
+Crie um arquivo `.npmrc` na **raiz de cada projeto** que for consumir este pacote:
+
+```ini
+@nexus-creator-app:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=SEU_PERSONAL_ACCESS_TOKEN
+```
+
+> Gere o token em: **GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)**
+> Permissão necessária: `read:packages`
+>
+> Em CI/CD (Vercel, GitHub Actions, etc.) injete o token via secret/env var `NODE_AUTH_TOKEN`.
+
+### Instalar o pacote
+
 ```bash
-npm install @nexus-creator/design-system
+npm install @nexus-creator-app/design-system
 # ou
-pnpm add @nexus-creator/design-system
+pnpm add @nexus-creator-app/design-system
 ```
 
 > **Peer dependencies:** `react >= 18`, `react-dom >= 18`, `tailwindcss >= 3.4`
@@ -23,7 +39,7 @@ pnpm add @nexus-creator/design-system
 
 ```ts
 // src/main.tsx ou src/app/layout.tsx
-import '@nexus-creator/design-system/styles';
+import '@nexus-creator-app/design-system/styles';
 ```
 
 Isso injeta as **CSS custom properties** (`--nex-*`) e as fontes (Cinzel, Inter, JetBrains Mono).
@@ -33,13 +49,13 @@ Isso injeta as **CSS custom properties** (`--nex-*`) e as fontes (Cinzel, Inter,
 ```ts
 // tailwind.config.ts
 import type { Config } from 'tailwindcss';
-import nexPreset from '@nexus-creator/design-system/preset';
+import nexPreset from '@nexus-creator-app/design-system/preset';
 
 const config: Config = {
   presets: [nexPreset],
   content: [
     './src/**/*.{ts,tsx}',
-    './node_modules/@nexus-creator/design-system/dist/**/*.js',
+    './node_modules/@nexus-creator-app/design-system/dist/**/*.js',
   ],
 };
 
@@ -67,7 +83,7 @@ import {
   Avatar,
   Sidebar,
   NavItem,
-} from '@nexus-creator/design-system';
+} from '@nexus-creator-app/design-system';
 ```
 
 ### Button
@@ -207,7 +223,7 @@ import {
 ## Tokens
 
 ```ts
-import { colors, fontFamily, fontSize, spacing, borderRadius, boxShadow } from '@nexus-creator/design-system/tokens';
+import { colors, fontFamily, fontSize, spacing, borderRadius, boxShadow } from '@nexus-creator-app/design-system/tokens';
 
 colors.brand.cyan   // '#00D4FF'
 colors.entity.character.DEFAULT // '#8B5CF6'
@@ -218,7 +234,7 @@ colors.entity.character.DEFAULT // '#8B5CF6'
 ## Utilitário `cn`
 
 ```ts
-import { cn } from '@nexus-creator/design-system';
+import { cn } from '@nexus-creator-app/design-system';
 
 <div className={cn('base-class', isActive && 'active-class', className)} />
 ```
@@ -248,18 +264,29 @@ Com o preset ativo você tem acesso a:
 
 ---
 
-## Publicando atualizações
+## Publicando novas versões
+
+A publicação é **automática via GitHub Actions** ao criar uma tag de versão:
 
 ```bash
-# Bumpar a versão
-npm version patch   # ou minor/major
+# 1. Bumpa a versão no package.json e cria o commit+tag
+npm version patch   # ou minor / major
 
-# Buildar
-npm run build
-
-# Publicar no registry
-npm publish --access public
+# 2. Sobe o commit e a tag para o GitHub
+git push && git push --tags
 ```
+
+O workflow `.github/workflows/publish.yml` dispara automaticamente na tag, faz o build e publica no GitHub Packages usando o `GITHUB_TOKEN` do Actions — sem configuração extra.
+
+> Para publicar manualmente (desenvolvimento local), você precisará de um token com permissão `write:packages` no seu `~/.npmrc`.
+
+---
+
+## CI
+
+O workflow `.github/workflows/ci.yml` roda em todo PR e push para `main`:
+- Type check (`tsc --noEmit`)
+- Build (`tsup`)
 
 ---
 
