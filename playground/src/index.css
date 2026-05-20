@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: var(--nex-bg-primary);
+  color: var(--nex-text-primary);
+  font-family: var(--nex-font-ui);
+  -webkit-font-smoothing: antialiased;
+}
