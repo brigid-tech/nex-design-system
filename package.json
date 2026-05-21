@@ -1,6 +1,6 @@
 {
   "name": "@nexus-creator-app/design-system",
-  "version": "0.1.0",
+  "version": "v2026.05.21.14.45",
   "description": "Nexus Creator design system — dark-first, cyan↔violet, arcane editorial. Compatible with Tailwind CSS and shadcn/ui.",
   "license": "MIT",
   "type": "module",
