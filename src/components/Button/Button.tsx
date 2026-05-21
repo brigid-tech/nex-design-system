@@ -4,7 +4,7 @@ import { cn } from "../../lib/cn";
 
 const buttonVariants = cva(
   [
-    "relative inline-flex items-center justify-center gap-2",
+    "relative inline-flex items-center justify-center gap-2 overflow-hidden isolate",
     "font-ui font-semibold whitespace-nowrap cursor-pointer",
     "border border-transparent rounded-md",
     "transition-all duration-ui ease-out",
@@ -135,14 +135,40 @@ export interface ButtonProps
     VariantProps<typeof buttonVariants> {
   loading?: boolean;
   asChild?: boolean;
+  /** Disable the click ripple effect. Defaults to false (ripple enabled). */
+  noRipple?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, loading, disabled, children, ...props }, ref) => {
+  (
+    { className, variant, size, loading, disabled, noRipple, children, onPointerDown, ...props },
+    ref
+  ) => {
+    const handlePointerDown = (e: React.PointerEvent<HTMLButtonElement>) => {
+      onPointerDown?.(e);
+      if (noRipple || disabled || loading) return;
+      const btn = e.currentTarget;
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const dx = Math.max(x, rect.width - x);
+      const dy = Math.max(y, rect.height - y);
+      const d = Math.hypot(dx, dy) * 2;
+      const ripple = document.createElement("span");
+      ripple.className = "nex-btn-ripple";
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
+      ripple.style.width = `${d}px`;
+      ripple.style.height = `${d}px`;
+      btn.appendChild(ripple);
+      ripple.addEventListener("animationend", () => ripple.remove(), { once: true });
+    };
+
     return (
       <button
         ref={ref}
         disabled={disabled || loading}
+        onPointerDown={handlePointerDown}
         className={cn(buttonVariants({ variant, size }), className)}
         {...props}
       >

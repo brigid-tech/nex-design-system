@@ -33,7 +33,17 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   ) => {
     const innerRef = React.useRef<HTMLInputElement | null>(null);
 
-    React.useImperativeHandle(forwardedRef, () => innerRef.current as HTMLInputElement);
+    const setRef = React.useCallback(
+      (el: HTMLInputElement | null) => {
+        innerRef.current = el;
+        if (typeof forwardedRef === "function") {
+          forwardedRef(el);
+        } else if (forwardedRef) {
+          forwardedRef.current = el;
+        }
+      },
+      [forwardedRef]
+    );
 
     React.useEffect(() => {
       if (innerRef.current) {
@@ -45,19 +55,19 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       <label
         htmlFor={id}
         className={cn(
-          "group inline-flex items-start gap-2.5 cursor-pointer select-none",
+          "group relative inline-flex items-start gap-2.5 cursor-pointer select-none",
           "font-ui text-body text-nex-text-primary leading-snug",
           disabled && "cursor-not-allowed",
           wrapperClassName
         )}
       >
         <input
-          ref={innerRef}
+          ref={setRef}
           id={id}
           type="checkbox"
           disabled={disabled}
           aria-invalid={error || undefined}
-          className="absolute opacity-0 pointer-events-none"
+          className="sr-only"
           {...props}
         />
         <span

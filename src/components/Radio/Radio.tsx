@@ -16,7 +16,7 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
       <label
         htmlFor={id}
         className={cn(
-          "group inline-flex items-start gap-2.5 cursor-pointer select-none",
+          "group relative inline-flex items-start gap-2.5 cursor-pointer select-none",
           "font-ui text-body text-nex-text-primary leading-snug",
           disabled && "cursor-not-allowed",
           wrapperClassName
@@ -27,7 +27,7 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
           id={id}
           type="radio"
           disabled={disabled}
-          className="absolute opacity-0 pointer-events-none"
+          className="sr-only"
           {...props}
         />
         <span

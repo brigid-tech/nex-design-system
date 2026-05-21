@@ -26,7 +26,6 @@ const RadioCard = React.forwardRef<HTMLInputElement, RadioCardProps>(
           "transition-all duration-ui ease-out",
           "hover:border-nex-border-strong hover:text-nex-text-primary",
           "has-[input:checked]:border-nex-brand-cyan has-[input:checked]:bg-[rgba(0,212,255,0.06)] has-[input:checked]:text-nex-text-primary",
-          "has-[input:checked]:shadow-[inset_0_0_0_1px_var(--nex-brand-cyan),_0_0_18px_rgba(0,212,255,0.12)]",
           "has-[input:focus-visible]:shadow-focus-ring",
           disabled && "cursor-not-allowed opacity-40",
           wrapperClassName,
@@ -38,7 +37,7 @@ const RadioCard = React.forwardRef<HTMLInputElement, RadioCardProps>(
           id={id}
           type="radio"
           disabled={disabled}
-          className="absolute opacity-0 pointer-events-none"
+          className="sr-only"
           {...props}
         />
         <span
