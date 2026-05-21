@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 import { colors } from "./tokens/colors";
 import { fontFamily, fontSize } from "./tokens/typography";
 import { spacing, borderRadius } from "./tokens/spacing";
@@ -60,10 +61,21 @@ const nexPreset: Config = {
       },
       transitionDuration: transitionDuration as unknown as Record<string, string>,
       transitionTimingFunction: transitionTimingFunction as unknown as Record<string, string>,
-      animation: animation as unknown as Record<string, string>,
+      animation: {
+        ...(animation as unknown as Record<string, string>),
+        in: "fade-in 150ms ease-out",
+        out: "fade-out 150ms ease-in",
+      },
+      keyframes: {
+        "fade-in":  { from: { opacity: "0" } },
+        "fade-out": { to:   { opacity: "0" } },
+        "zoom-in":  { from: { opacity: "0", transform: "scale(0.96)" } },
+        "zoom-out": { to:   { opacity: "0", transform: "scale(0.96)" } },
+      },
       boxShadow: boxShadow as unknown as Record<string, string>,
     },
   },
+  plugins: [tailwindcssAnimate],
 };
 
 export default nexPreset;
