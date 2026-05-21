@@ -130,6 +130,46 @@ const buttonVariants = cva(
   }
 );
 
+// Ripple mode per variant
+// --dark  : semi-transparent black overlay — for solid/filled colored buttons
+// --light : subtle white wash — for ghost/secondary on dark background
+// --color : brand color at low opacity — for outlined buttons (uses --nex-ripple-rgb)
+type RippleMode = "dark" | "light" | "color"
+
+const RIPPLE_MODE: Record<string, RippleMode> = {
+  gradient:        "dark",
+  magic:           "dark",
+  cyan:            "dark",
+  violet:          "dark",
+  gold:            "dark",
+  success:         "dark",
+  warning:         "dark",
+  error:           "dark",
+  info:            "dark",
+  secondary:       "light",
+  ghost:           "light",
+  "outline-cyan":     "color",
+  "outline-violet":   "color",
+  "outline-gold":     "color",
+  "outline-success":  "color",
+  "outline-warning":  "color",
+  "outline-error":    "color",
+  "outline-info":     "color",
+  destructive:     "color",
+}
+
+// RGB values for color-mode ripples (matches brand/semantic tokens)
+const RIPPLE_RGB: Record<string, string> = {
+  "outline-cyan":     "0, 212, 255",
+  "outline-violet":   "139, 92, 246",
+  "outline-gold":     "230, 178, 67",
+  "outline-success":  "16, 185, 129",
+  "outline-warning":  "245, 158, 11",
+  "outline-error":    "239, 68, 68",
+  "outline-info":     "59, 130, 246",
+  destructive:     "239, 68, 68",
+}
+
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
@@ -155,7 +195,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       const dy = Math.max(y, rect.height - y);
       const d = Math.hypot(dx, dy) * 2;
       const ripple = document.createElement("span");
-      ripple.className = "nex-btn-ripple";
+      const v = variant ?? "secondary"
+      const mode = RIPPLE_MODE[v] ?? "light"
+      ripple.className = `nex-btn-ripple nex-btn-ripple--${mode}`
+      if (mode === "color" && RIPPLE_RGB[v]) {
+        ripple.style.setProperty("--nex-ripple-rgb", RIPPLE_RGB[v])
+      }
       ripple.style.left = `${x}px`;
       ripple.style.top = `${y}px`;
       ripple.style.width = `${d}px`;
