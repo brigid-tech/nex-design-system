@@ -27,7 +27,9 @@
   /* Brand */
   --nex-brand-cyan:   #00D4FF;
   --nex-brand-violet: #8B5CF6;
+  --nex-brand-gold:   hsl(45, 80%, 55%);
   --nex-brand-gradient: linear-gradient(135deg, #00D4FF 0%, #8B5CF6 100%);
+  --nex-brand-magic:   linear-gradient(135deg, hsl(280, 70%, 60%) 0%, #00D4FF 50%, hsl(45, 80%, 55%) 100%);
 
   /* Semantic */
   --nex-success: #10B981;
