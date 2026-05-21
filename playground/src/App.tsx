@@ -2,8 +2,11 @@ import { useState } from "react";
 import {
   Button,
   Input,
+  InputShell, InputAffix,
   Textarea,
   Select,
+  Checkbox,
+  Radio, RadioCard,
   Badge,
   Mention,
   Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter,
@@ -17,7 +20,7 @@ import {
 import {
   Sparkles, Zap, Crown, Check, TriangleAlert, Trash2,
   UserRound, MapPin, Shield, Package, Skull, Calendar,
-  Info, Link,
+  Info, Link, Search, X, Lock, EyeOff, Mail, Flag,
 } from "lucide-react";
 
 /* ─── helpers ─── */
@@ -168,29 +171,42 @@ export default function App() {
 
         {/* ── Buttons ── */}
         <Section title="Botões">
-          <Label>Sólidos · principal</Label>
+          <Label>Sólidos · gradient & magic</Label>
           <Row>
             <Button variant="gradient"><Sparkles size={16} />Entrar no beta</Button>
             <Button variant="magic"><Sparkles size={16} />Invocar Arquivista</Button>
-            <Button variant="cyan"><Zap size={16} />Publicar wiki</Button>
-            <Button variant="violet"><UserRound size={16} />Criar personagem</Button>
-          </Row>
-
-          <Label>Semânticos</Label>
-          <Row>
-            <Button variant="success"><Check size={16} />Salvar</Button>
-            <Button variant="warning"><TriangleAlert size={16} />Continuar mesmo assim</Button>
-            <Button variant="error"><Trash2 size={16} />Excluir</Button>
-            <Button variant="info"><Info size={16} />Saber mais</Button>
-          </Row>
-
-          <Label>Outlined & Neutros</Label>
-          <Row>
-            <Button variant="outline-cyan"><Zap size={16} />Publicar wiki</Button>
-            <Button variant="outline-violet"><Crown size={16} />Upgrade Pro</Button>
             <Button variant="secondary">Cancelar</Button>
             <Button variant="ghost">Ver mais</Button>
-            <Button variant="destructive"><Trash2 size={16} />Excluir entidade</Button>
+          </Row>
+
+          <Label>Sólidos · brand</Label>
+          <Row>
+            <Button variant="cyan"><Zap size={16} />Publicar wiki</Button>
+            <Button variant="violet"><UserRound size={16} />Criar personagem</Button>
+            <Button variant="gold"><Crown size={16} />Upgrade Pro</Button>
+          </Row>
+
+          <Label>Outlined · brand</Label>
+          <Row>
+            <Button variant="outline-cyan"><Zap size={16} />Publicar wiki</Button>
+            <Button variant="outline-violet"><UserRound size={16} />Criar personagem</Button>
+            <Button variant="outline-gold"><Crown size={16} />Upgrade Pro</Button>
+          </Row>
+
+          <Label>Sólidos · semantic</Label>
+          <Row>
+            <Button variant="success"><Check size={16} />Salvar mundo</Button>
+            <Button variant="warning"><TriangleAlert size={16} />Continuar mesmo assim</Button>
+            <Button variant="info"><Info size={16} />Saber mais</Button>
+            <Button variant="error"><Trash2 size={16} />Excluir entidade</Button>
+          </Row>
+
+          <Label>Outlined · semantic</Label>
+          <Row>
+            <Button variant="outline-success"><Check size={16} />Confirmar</Button>
+            <Button variant="outline-warning"><TriangleAlert size={16} />Atenção</Button>
+            <Button variant="outline-info"><Info size={16} />Detalhes</Button>
+            <Button variant="outline-error"><Trash2 size={16} />Excluir</Button>
           </Row>
 
           <Label>Tamanhos & Estados</Label>
@@ -199,7 +215,7 @@ export default function App() {
             <Button variant="gradient" size="md">MD</Button>
             <Button variant="gradient" size="lg">LG</Button>
             <Button variant="cyan" loading>Salvando…</Button>
-            <Button variant="secondary" disabled>Desabilitado</Button>
+            <Button variant="gradient" disabled>Desabilitado</Button>
           </Row>
         </Section>
 
@@ -222,13 +238,90 @@ export default function App() {
               <span className="text-caption text-nex-text-tertiary">Define o ícone e a cor do chip.</span>
             </div>
 
+            <div className="flex flex-col gap-1.5">
+              <label className="text-label text-nex-text-secondary uppercase tracking-widest">Buscar</label>
+              <InputShell>
+                <InputAffix><Search size={16} /></InputAffix>
+                <input type="text" placeholder="Personagens, lugares, eventos…" />
+              </InputShell>
+              <span className="text-caption text-nex-text-tertiary">Cmd+K abre a busca global.</span>
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <label className="text-label text-nex-text-secondary uppercase tracking-widest">Filtro ativo</label>
+              <InputShell>
+                <input type="text" defaultValue="tag:facção dourada" />
+                <InputAffix as="button" aria-label="Limpar"><X size={16} /></InputAffix>
+              </InputShell>
+              <span className="text-caption text-nex-text-tertiary">Clique no X para remover o filtro.</span>
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <label className="text-label text-nex-text-secondary uppercase tracking-widest">Senha</label>
+              <InputShell>
+                <InputAffix><Lock size={16} /></InputAffix>
+                <input type="password" defaultValue="passwordpassword" className="font-mono" />
+                <InputAffix as="button" aria-label="Mostrar senha"><EyeOff size={16} /></InputAffix>
+              </InputShell>
+              <span className="text-caption text-nex-text-tertiary">Mínimo de 12 caracteres.</span>
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <label className="text-label text-nex-text-secondary uppercase tracking-widest">Email</label>
+              <InputShell>
+                <InputAffix><Mail size={16} /></InputAffix>
+                <input type="email" defaultValue="kael@arquivista.app" />
+                <InputAffix className="text-nex-success"><Check size={16} /></InputAffix>
+              </InputShell>
+              <span className="text-caption text-nex-text-tertiary">Verificado.</span>
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <label className="text-label text-nex-text-secondary uppercase tracking-widest">Handle</label>
+              <InputShell>
+                <InputAffix text="prefix">@</InputAffix>
+                <input type="text" defaultValue="kael" className="font-mono" />
+              </InputShell>
+              <span className="text-caption text-nex-text-tertiary">nexuscreator.app/u/kael</span>
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <label className="text-label text-nex-text-secondary uppercase tracking-widest">Idade do mundo</label>
+              <InputShell>
+                <input type="number" defaultValue="1247" />
+                <InputAffix text="suffix">anos</InputAffix>
+              </InputShell>
+              <span className="text-caption text-nex-text-tertiary">Usado em @mundo.idade.</span>
+            </div>
+
             <div className="flex flex-col gap-1.5 col-span-2">
               <label className="text-label text-nex-text-secondary uppercase tracking-widest">Descrição</label>
               <Textarea placeholder="O guerreiro Kael, agora @Kael.idade anos…" rows={3} />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-label text-nex-text-secondary uppercase tracking-widest">Email</label>
+              <label className="text-label text-nex-text-secondary uppercase tracking-widest">Email (erro)</label>
+              <InputShell error>
+                <InputAffix className="text-nex-error"><Mail size={16} /></InputAffix>
+                <input type="email" defaultValue="kael@" />
+              </InputShell>
+              <span className="text-caption text-nex-error flex items-center gap-1">
+                <X size={12} /> Endereço de email inválido.
+              </span>
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <label className="text-label text-nex-text-secondary uppercase tracking-widest">Facção</label>
+              <InputShell>
+                <InputAffix className="text-nex-entity-faction"><Flag size={16} /></InputAffix>
+                <input type="text" defaultValue="Ordem Dourada" />
+                <InputAffix as="button" aria-label="Abrir seletor"><Search size={16} /></InputAffix>
+              </InputShell>
+              <span className="text-caption text-nex-text-tertiary">Abre o seletor de facções.</span>
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <label className="text-label text-nex-text-secondary uppercase tracking-widest">Email (input simples)</label>
               <Input
                 error={inputError}
                 defaultValue="kael@"
@@ -239,13 +332,78 @@ export default function App() {
                 {inputError ? "Endereço de email inválido." : "Clique para ver estado de erro."}
               </span>
             </div>
-
-            <div className="flex flex-col gap-1.5">
-              <label className="text-label text-nex-text-secondary uppercase tracking-widest">Handle</label>
-              <Input mono defaultValue="@kael" />
-              <span className="text-caption text-nex-text-tertiary">URL: nexuscreator.app/u/kael</span>
-            </div>
           </div>
+        </Section>
+
+        {/* ── Checkbox ── */}
+        <Section title="Checkboxes">
+          <Label>Termos & comunicações</Label>
+          <div className="flex flex-col gap-3 max-w-md">
+            <Checkbox
+              defaultChecked
+              label={
+                <>
+                  Aceito os <a href="#" className="text-nex-brand-cyan hover:underline">termos</a>{" "}
+                  e a <a href="#" className="text-nex-brand-cyan hover:underline">política de privacidade</a>
+                </>
+              }
+            />
+            <Checkbox label="Quero receber novidades do beta no meu e-mail" />
+          </div>
+
+          <Label>Estados</Label>
+          <Row>
+            <Checkbox label="Padrão" />
+            <Checkbox label="Marcado" defaultChecked />
+            <Checkbox label="Indeterminado" indeterminate />
+            <Checkbox label="Desabilitado" disabled />
+            <Checkbox label="Marcado · off" defaultChecked disabled />
+            <Checkbox label="Com erro" error />
+          </Row>
+        </Section>
+
+        {/* ── Radio ── */}
+        <Section title="Radio buttons">
+          <Label>Você é, principalmente…</Label>
+          <div className="flex flex-wrap gap-2.5">
+            <RadioCard name="role" defaultChecked label="Mestre RPG" />
+            <RadioCard name="role" label="Escritor" />
+            <RadioCard name="role" label="Outro" />
+          </div>
+
+          <Label>Visibilidade do mundo</Label>
+          <div className="flex flex-col gap-3 max-w-md p-4 rounded-lg bg-nex-bg-secondary border border-nex-border-subtle">
+            <Radio
+              name="visibility"
+              defaultChecked
+              label="Privado"
+              description="Apenas você e colaboradores convidados podem ver."
+            />
+            <Radio
+              name="visibility"
+              label="Link secreto"
+              description="Qualquer pessoa com o link pode visualizar (sem indexação)."
+            />
+            <Radio
+              name="visibility"
+              label="Público"
+              description="Aparece em nexuscreator.app/explore."
+            />
+            <Radio
+              name="visibility"
+              disabled
+              label={<>Comercial <span className="text-nex-brand-gold">(Pro)</span></>}
+              description="Disponível em planos pagos."
+            />
+          </div>
+
+          <Label>Estados</Label>
+          <Row>
+            <Radio name="s1" label="Padrão" />
+            <Radio name="s2" defaultChecked label="Selecionado" />
+            <Radio name="s3" disabled label="Desabilitado" />
+            <Radio name="s4" defaultChecked disabled label="Selecionado · off" />
+          </Row>
         </Section>
 
         {/* ── Badges ── */}

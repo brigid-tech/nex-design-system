@@ -19,6 +19,7 @@ export const colors = {
   brand: {
     cyan:   "#00D4FF",
     violet: "#8B5CF6",
+    gold:   "hsl(45, 80%, 55%)",
   },
   semantic: {
     success: "#10B981",

@@ -31,6 +31,7 @@ const nexPreset: Config = {
           brand: {
             cyan:   "var(--nex-brand-cyan)",
             violet: "var(--nex-brand-violet)",
+            gold:   "var(--nex-brand-gold)",
           },
           success: "var(--nex-success)",
           warning: "var(--nex-warning)",
