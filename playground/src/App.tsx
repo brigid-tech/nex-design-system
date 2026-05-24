@@ -83,6 +83,11 @@ export default function App() {
           <p className="text-body text-nex-text-secondary">
             Visualize todos os componentes do design system em um único lugar.
           </p>
+          <div className="flex flex-wrap items-center gap-3 pt-1">
+            <span className="text-label text-nex-text-tertiary uppercase tracking-widest">Vitrines</span>
+            <a href="/playground/toasts" className="text-body-sm text-nex-brand-cyan hover:underline">Toasts →</a>
+            <a href="/playground/validation" className="text-body-sm text-nex-brand-cyan hover:underline">Validação →</a>
+          </div>
         </div>
 
         {/* ── Colors ── */}
