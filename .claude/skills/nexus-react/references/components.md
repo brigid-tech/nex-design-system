@@ -2,50 +2,63 @@
 
 ## Anatomia de um componente — template base
 
-```tsx
-// src/components/shared/EntityCard.tsx
-import { cn } from '@nexus-creator-app/design-system'
-import { Badge } from '@nexus-creator-app/design-system'
-import type { Entity } from '@/types/entities'
+Exemplo de um componente do DS (imports relativos dentro de `src/`, `forwardRef`,
+`displayName`, elemento nativo acessível e classe de entidade **estática**):
 
-// Interface nomeada — SEMPRE
-interface EntityCardProps {
-  entity: Entity
-  active?: boolean
-  onSelect: (id: string) => void
-  className?: string
+```tsx
+// src/components/EntityNavItem/EntityNavItem.tsx
+import * as React from "react"
+import { cn } from "../../lib/cn"
+import { Badge } from "../Badge"
+import type { EntityType } from "../../tokens/colors"
+
+// Mapa estático — Tailwind só gera classes que existem literais no código.
+// Nunca monte a classe por interpolação (`bg-nex-entity-${type}`): ela não é
+// detectada no build e o CSS não é gerado.
+const entityDot: Record<EntityType, string> = {
+  character: "bg-nex-entity-character",
+  place:     "bg-nex-entity-place",
+  faction:   "bg-nex-entity-faction",
+  item:      "bg-nex-entity-item",
+  creature:  "bg-nex-entity-creature",
+  event:     "bg-nex-entity-event",
 }
 
-// Named export — sem React.FC
-export function EntityCard({
-  entity,
-  active = false,
-  onSelect,
-  className,
-}: EntityCardProps) {
-  return (
-    <div
-      role="button"
-      tabIndex={0}
-      onClick={() => onSelect(entity.id)}
-      onKeyDown={(e) => e.key === 'Enter' && onSelect(entity.id)}
+export interface EntityNavItemProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  entity: EntityType
+  label: string
+  active?: boolean
+}
+
+// Interativo = <button>, nunca <div onClick> (foco e teclado nativos)
+const EntityNavItem = React.forwardRef<HTMLButtonElement, EntityNavItemProps>(
+  ({ entity, label, active = false, className, ...props }, ref) => (
+    <button
+      ref={ref}
+      type="button"
+      aria-pressed={active}
       className={cn(
         // Base mobile — 44px mínimo de toque
-        'flex items-center gap-3 px-3 py-3 rounded-lg cursor-pointer min-h-[44px]',
-        'transition-colors duration-150',
+        "flex w-full items-center gap-3 px-3 py-3 rounded-lg min-h-[44px]",
+        "transition-colors duration-150",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nex-brand-cyan",
         active
-          ? 'bg-nex-bg-elevated text-nex-text-primary'
-          : 'text-nex-text-secondary hover:bg-nex-bg-hover hover:text-nex-text-primary',
+          ? "bg-nex-bg-elevated text-nex-text-primary"
+          : "text-nex-text-secondary hover:bg-nex-bg-hover hover:text-nex-text-primary",
         className
       )}
-      aria-selected={active}
+      {...props}
     >
-      <span className={`w-2 h-2 rounded-full shrink-0 bg-nex-entity-${entity.type}`} />
-      <span className="font-ui text-sm flex-1 truncate">{entity.name}</span>
-      <Badge entity={entity.type} size="sm" />
-    </div>
+      <span className={cn("w-2 h-2 rounded-full shrink-0", entityDot[entity])} />
+      <span className="font-ui text-sm flex-1 truncate text-left">{label}</span>
+      <Badge entity={entity} size="sm" />
+    </button>
   )
-}
+)
+EntityNavItem.displayName = "EntityNavItem"
+
+export { EntityNavItem }
 ```
 
 ---
@@ -190,8 +203,8 @@ export function PageLayout({ header, sidebar, children }: PageLayoutProps) {
 // ✅ Interface nomeada para props
 interface MyProps { ... }
 
-// ✅ Tipos importados dos tipos compartilhados
-import type { Entity, EntityType } from '@/types/entities'
+// ✅ Tipos derivados dos tokens (no DS, imports relativos dentro de src/)
+import type { EntityType } from '../../tokens/colors'
 
 // ✅ Eventos tipados
 const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => { ... }

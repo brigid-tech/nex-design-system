@@ -122,7 +122,7 @@ Antes de qualquer push em task de UI, abrir DevTools e verificar em:
 | Botão com fundo `from-nex-brand-cyan to-nex-brand-violet` | `<Button variant="gradient">` |
 | Botão outline com cor da entidade | `<Button variant="outline-cyan/violet">` |
 | Campo com borda `border-nex-error` | `<Input error>` |
-| Lable + campo + mensagem | `<FormField>` |
+| Label + campo + mensagem | `<FormField>` |
 | Pill colorido de entidade | `<Badge entity="...">` |
 | Token @menção inline em texto | `<Mention entity="...">` |
 | Card com brilho hover | `<Card glassMagic>` ou `<EntityCard>` |

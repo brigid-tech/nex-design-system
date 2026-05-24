@@ -5,7 +5,7 @@ description: "Fluxo completo de Git, commits e integração com Linear para o pr
 
 # Nexus Creator — Git Workflow
 
-Gitflow + Linear do **nex-design-system**. Fonte de verdade: `CONTRIBUTING.md` e `CLAUDE.md`.
+Gitflow + Linear do **nex-design-system**. Fonte de verdade: `CLAUDE.md` e `README.md`.
 
 > ⚠️ Diferença do app: aqui o pacote é **publicado no GitHub Packages**, e a
 > publicação dispara ao criar uma **tag de versão** (semver). Para versionar e
