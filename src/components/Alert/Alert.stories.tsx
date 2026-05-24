@@ -108,6 +108,34 @@ export const LongBody: Story = {
   },
 }
 
+export const PageBanners: Story = {
+  render: () => (
+    <div className="flex flex-col gap-3 w-[560px]">
+      <Alert kind="error" title="Não conseguimos forjar essa entidade ainda" action="Rolar até o erro">
+        4 campos precisam de ajuste antes de criar{" "}
+        <Mention entity="character">@kael</Mention>.
+      </Alert>
+
+      <Alert kind="warning" title="2 menções apontam para stubs" action="Resolver agora">
+        <Mention entity="place">@Cidades.Bryn</Mention> e{" "}
+        <Mention entity="character">@Veyla</Mention> ainda não existem. Serão criadas vazias.
+      </Alert>
+
+      <Alert kind="success" title="Rascunho salvo automaticamente" dismissible={false}>
+        Você pode fechar e continuar de qualquer dispositivo em até 30 dias.
+      </Alert>
+
+      <Alert kind="info" title="Tipo Personagem adiciona 4 atributos">
+        Idade, raça, local de nascimento e facção aparecem por padrão.
+      </Alert>
+
+      <Alert kind="brand" title="Quer ajuda? Pergunte ao Arquivista" action="Abrir">
+        Posso sugerir nome, descrição e conexões com base no seu canon atual.
+      </Alert>
+    </div>
+  ),
+}
+
 export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-col gap-3 w-[520px]">
