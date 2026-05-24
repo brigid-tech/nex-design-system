@@ -2,7 +2,7 @@
 
 ## Projeto
 ```
-https://linear.app/nexus-creator/project/nexus-core-344ac934bab1
+https://linear.app/nexus-creator/project/nexus-design-system-9685c606f05b
 ```
 
 ## Ciclo de vida de uma issue

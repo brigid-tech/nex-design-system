@@ -5,6 +5,7 @@ import {
   InputShell, InputAffix,
   Textarea,
   Select,
+  FormField,
   Checkbox,
   Radio, RadioCard,
   Badge,
@@ -82,6 +83,11 @@ export default function App() {
           <p className="text-body text-nex-text-secondary">
             Visualize todos os componentes do design system em um único lugar.
           </p>
+          <div className="flex flex-wrap items-center gap-3 pt-1">
+            <span className="text-label text-nex-text-tertiary uppercase tracking-widest">Vitrines</span>
+            <a href="/playground/toasts" className="text-body-sm text-nex-brand-cyan hover:underline">Toasts →</a>
+            <a href="/playground/validation" className="text-body-sm text-nex-brand-cyan hover:underline">Validação →</a>
+          </div>
         </div>
 
         {/* ── Colors ── */}
@@ -332,6 +338,24 @@ export default function App() {
                 {inputError ? "Endereço de email inválido." : "Clique para ver estado de erro."}
               </span>
             </div>
+          </div>
+        </Section>
+
+        {/* ── FormField ── */}
+        <Section title="FormField — estados de validação">
+          <div className="flex flex-col gap-4 max-w-sm">
+            <FormField label="Padrão" hint="Texto de ajuda neutro." htmlFor="ff-a">
+              <Input id="ff-a" placeholder="Digite algo" />
+            </FormField>
+            <FormField label="Com erro" error="Campo obrigatório." htmlFor="ff-b">
+              <Input id="ff-b" error />
+            </FormField>
+            <FormField label="Com aviso" warning="A menção aponta para entidade ainda inexistente." htmlFor="ff-c">
+              <Input id="ff-c" defaultValue="Cidades.Bryn" mono />
+            </FormField>
+            <FormField label="Válido" success='"Kael Vandros" livre em Aetheria.' htmlFor="ff-d">
+              <Input id="ff-d" defaultValue="Kael Vandros" />
+            </FormField>
           </div>
         </Section>
 
