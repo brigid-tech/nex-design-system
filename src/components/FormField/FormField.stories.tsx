@@ -64,3 +64,42 @@ export const WithSelect: Story = {
     </div>
   ),
 }
+
+export const WithSuccess: Story = {
+  render: () => (
+    <div className="p-4 w-72">
+      <FormField label="Nome" success='"Kael Vandros" livre em Aetheria.' htmlFor="name">
+        <Input id="name" value="Kael Vandros" readOnly />
+      </FormField>
+    </div>
+  ),
+}
+
+export const WithWarning: Story = {
+  render: () => (
+    <div className="p-4 w-72">
+      <FormField label="Handle" warning="A menção aponta para entidade ainda inexistente." htmlFor="h">
+        <Input id="h" value="Cidades.Bryn" mono readOnly />
+      </FormField>
+    </div>
+  ),
+}
+
+export const AllStates: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4 p-4 w-72">
+      <FormField label="Padrão" hint="Texto de ajuda." htmlFor="a">
+        <Input id="a" placeholder="Digite algo" />
+      </FormField>
+      <FormField label="Com erro" error="Campo obrigatório." htmlFor="b">
+        <Input id="b" error />
+      </FormField>
+      <FormField label="Com aviso" warning="Menção para stub inexistente." htmlFor="c">
+        <Input id="c" defaultValue="Cidades.Bryn" mono />
+      </FormField>
+      <FormField label="Válido" success='"Kael Vandros" disponível.' htmlFor="d">
+        <Input id="d" defaultValue="Kael Vandros" />
+      </FormField>
+    </div>
+  ),
+}
