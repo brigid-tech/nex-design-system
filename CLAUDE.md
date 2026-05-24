@@ -18,6 +18,31 @@ que se conectam por @menções em tempo real.
 
 ---
 
+## Skills do Claude Code disponíveis
+
+Este repo tem skills em `.claude/skills/`. Acione a skill relevante **antes** de
+trabalhar no assunto correspondente — ela traz o detalhe que este arquivo resume.
+
+| Skill | Quando usar |
+|---|---|
+| `nexus-design-system` | Visão geral do pacote: API pública, barrels, preset, DS-vs-app |
+| `nexus-ds-component` | Criar/alterar componente (template CVA + forwardRef + barrels + checklist) |
+| `nexus-react` | Padrões de React/TS para componentes puros (sem fetch/estado global) |
+| `nexus-tokens` | Tokens de cor, tipografia, sombra, glow, motion, espaçamento |
+| `nexus-storybook` | Stories, cobertura de estados, addon a11y |
+| `nexus-a11y` | Acessibilidade obrigatória e quando usar primitivas Radix |
+| `nexus-release` | Semver, breaking change e publicação por tag |
+| `nexus-git-workflow` | Branches, commits, PR e ciclo da issue no Linear |
+| `nexus-agent-prompt` | Gerar prompts de execução para agentes a partir de cards |
+| `nexus-stack` | Contexto técnico do ecossistema Nexus (repos, arquitetura) |
+| `nexus-pm` | Planejamento e criação de issues no Linear |
+
+Regra prática: tarefa de componente → `nexus-ds-component` (+ `nexus-react`,
+`nexus-a11y`); tarefa de cor/tipo → `nexus-tokens`; abrir/fechar trabalho →
+`nexus-git-workflow`; lançar versão → `nexus-release`.
+
+---
+
 ## Comandos essenciais
 
 ```bash
@@ -28,8 +53,8 @@ npm run dev          # playground local (npm run dev --prefix playground)
 npm run storybook    # Storybook na porta 6006
 ```
 
-**Antes de qualquer commit:** `npm run lint && npm run build` devem passar sem
-erros ou warnings. Se falhar, corrija antes de continuar.
+**Antes de qualquer commit:** `npm run lint && npm run typecheck && npm run build`
+devem passar sem erros ou warnings. Se falhar, corrija antes de continuar.
 
 ---
 
@@ -327,27 +352,73 @@ git push && git push --tags
 **Regra:** qualquer remoção ou renomeação de prop, componente ou token
 exportado é uma breaking change → `major`. Adição é sempre `minor`.
 
+> A **tag** (`v*`) é a fonte de verdade da versão: o workflow seta a versão a
+> partir dela antes de publicar. Versionar/publicar é decisão humana — fluxo
+> completo e checklist em `nexus-release`.
+
 ---
 
 ## Gitflow
 
-Seguir o CONTRIBUTING.md do projeto. Resumo:
+Detalhes e templates em `nexus-git-workflow`. Resumo:
 
-```bash
-# Sempre partir de dev
-git fetch origin dev
-git checkout -b feature/nome-da-feature origin/dev
-
-# Commits atômicos por mudança lógica
-git commit -m "feat: adicionar componente FormField"
-git commit -m "fix(a11y): NavItem usar button em vez de div"
-
-# Antes do PR
-npm run lint && npm run build   # zero erros
-git push origin feature/nome-da-feature
+```
+dev → feature/nex-XX-titulo → PR (base: dev) → merge → dev → release (tag em main)
 ```
 
-PR sempre com `--base dev`, nunca direto para `main`.
+| Branch | Finalidade |
+|---|---|
+| `main` | Produção — recebe `dev` via release; a tag `v*` em `main` dispara o publish |
+| `dev` | Integração — **base de todo desenvolvimento** |
+| `feature/*` | Feature/bug/chore individual |
+
+```bash
+# Toda branch nova parte de dev
+git fetch origin dev
+git checkout -b <gitBranchName-do-linear> origin/dev   # nunca a partir de main
+
+# Commits atômicos por mudança lógica (Conventional Commits + ID da issue)
+git commit -m "feat(NEX-XX): adicionar componente FormField"
+git commit -m "fix(NEX-XX): NavItem usar button em vez de div"
+
+# Antes do PR — zero erros/warnings
+npm run lint && npm run typecheck && npm run build
+git push -u origin <branch>
+```
+
+**Regras:**
+- PR sempre com `--base dev`, **nunca** direto para `main`
+- Nunca commitar direto em `main` ou `dev`
+- Componente novo? Confirme antes do push: barrels, story, playground,
+  `displayName` (ver `nexus-ds-component`)
+- Publicação (tag/`npm version`) é decisão humana — ver `nexus-release`
+
+---
+
+## Integração com o Linear
+
+Toda tarefa de código é guiada por uma issue do Linear. Mantenha o status da
+issue em dia ao longo do trabalho — detalhes em `nexus-git-workflow`
+(`references/linear-integration.md`).
+
+**Ciclo de vida:** `Backlog → Todo → In Progress → In Review → Done`
+
+| Momento | Ação no Linear |
+|---|---|
+| Ao iniciar a tarefa | `get_issue` (copiar o `gitBranchName`) → `save_issue` state **In Progress** |
+| Durante (só se necessário) | `save_comment` com decisão técnica relevante ou bloqueio |
+| Ao abrir o PR | `save_issue` state **In Review** + `save_comment` com o link do PR |
+| Após o merge em `dev` | `save_issue` state **Done** |
+
+- O nome da branch vem do campo `gitBranchName` da issue — **nunca invente**.
+  Se a issue não tiver `gitBranchName`, pergunte antes de continuar.
+- Não comente ruído no Linear ("iniciando", "progresso") — só decisões,
+  bloqueios, dúvidas e o link do PR.
+
+| Referência | Valor |
+|---|---|
+| Projeto | https://linear.app/nexus-creator/project/nexus-core-344ac934bab1 |
+| Team ID | `12644966-1064-447b-a744-abeb565307b0` |
 
 ---
 
@@ -362,3 +433,6 @@ PR sempre com `--base dev`, nunca direto para `main`.
 - [ ] Sem lógica de negócio ou fetch dentro do componente
 - [ ] Exportado nos barrels (`components/index.ts` e `index.ts`)
 - [ ] `displayName` definido
+- [ ] Playground (`playground/src/App.tsx`) reflete o componente/prop novo
+- [ ] PR com `--base dev` e título `feat(NEX-XX): ...`
+- [ ] Issue do Linear movida para **In Review** com o link do PR
