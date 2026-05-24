@@ -37,6 +37,39 @@ Esquecer o barrel geral = o componente não sai no pacote. É o erro mais comum.
 
 ---
 
+## Storybook e playground — atualização obrigatória
+
+Toda criação ou modificação de componente (novo componente, nova prop, nova variante)
+**exige** atualizar os dois:
+
+### 1. Storybook (`<Nome>.stories.tsx`)
+
+- Cada **novo estado visual** ganha sua própria story nomeada
+- **Novas props** aparecem nos `args` do Storybook (para o painel de controls)
+- `AllStates` (ou similar) mostra todos os estados lado a lado quando o componente
+  tiver ≥ 3 estados
+- Regra lembrete: se o estado não tem story, não existe para quem usa o DS
+
+### 2. Playground (`playground/src/App.tsx`)
+
+- O playground é a vitrine viva do DS — toda mudança visível deve aparecer nele
+- **Componente novo** → adiciona uma `<Section title="…">` com exemplos reais
+- **Props novas** → atualiza a seção existente do componente para exibir os novos estados
+- Usar o mesmo `FormField`/`Input` que os apps consumidores usariam — sem raw HTML
+- Manter os exemplos próximos ao contexto do produto (Kael, Aetheria, Nexus Creator)
+
+```tsx
+// Exemplo de bloco para um novo estado no playground
+<FormField label="Válido" success='"Kael Vandros" livre em Aetheria.' htmlFor="ff-d">
+  <Input id="ff-d" defaultValue="Kael Vandros" />
+</FormField>
+```
+
+> **Regra:** se o componente mudou mas o playground não reflete a mudança,
+> a tarefa está incompleta.
+
+---
+
 ## Template canônico
 
 ```tsx
@@ -118,5 +151,6 @@ style={{ color: "#8B5CF6" }}
 - [ ] Cores/tipografia via tokens — nenhum hardcode
 - [ ] Acessível: focável por Tab, ativa com Enter/Space, `aria-*`, focus ring
 - [ ] Story cobre todos os estados (ver `nexus-storybook`)
+- [ ] **Playground atualizado** — novo componente tem `<Section>`, nova prop/variante aparece na seção existente
 - [ ] `npm run lint && npm run typecheck && npm run build` passam
 - [ ] Adição de prop/componente = bump **minor** (ver `nexus-release`)
