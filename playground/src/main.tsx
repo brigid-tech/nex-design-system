@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "@nexus-creator-app/design-system/styles";
+import "@brigid-tech/design-system/styles";
 import "./index.css";
 import App from "./App";
 import ToastsPlayground from "./pages/ToastsPlayground";

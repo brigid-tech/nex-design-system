@@ -1,4 +1,4 @@
-import { Alert, FormField, Input, Mention } from "@nexus-creator-app/design-system";
+import { Alert, FormField, Input, Mention } from "@brigid-tech/design-system";
 import { PageLayout, Panel } from "./PageLayout";
 
 const errorMicrocopy: { pattern: string; message: string }[] = [

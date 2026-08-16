@@ -1,4 +1,4 @@
-# CLAUDE.md — `@nexus-creator-app/design-system`
+# CLAUDE.md — `@brigid-tech/design-system`
 
 Guia operacional para o Claude Code neste repositório.
 Leia este arquivo inteiro antes de qualquer modificação.
@@ -7,7 +7,7 @@ Leia este arquivo inteiro antes de qualquer modificação.
 
 ## O que é este repositório
 
-Pacote npm privado `@nexus-creator-app/design-system`, publicado no GitHub
+Pacote npm privado `@brigid-tech/design-system`, publicado no GitHub
 Packages. É consumido por todos os serviços do Nexus Creator (editor web,
 landing page, app mobile, painel admin). Qualquer quebra de API pública
 ou regressão visual afeta todos ao mesmo tempo.

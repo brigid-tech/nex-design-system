@@ -1,6 +1,6 @@
 ---
 name: nexus-release
-description: "Versionamento e publicação do pacote @nexus-creator-app/design-system no GitHub Packages (repo nex-design-system). Use sempre que a tarefa envolver lançar uma versão, criar/empurrar uma tag, decidir o bump semver (patch/minor/major), avaliar se uma mudança é breaking change, ou entender o workflow de publish. Acionar ao mencionar 'release', 'publicar', 'versão', 'tag', 'semver', 'breaking change', 'GitHub Packages' ou 'bump'."
+description: "Versionamento e publicação do pacote @brigid-tech/design-system no GitHub Packages (repo nex-design-system). Use sempre que a tarefa envolver lançar uma versão, criar/empurrar uma tag, decidir o bump semver (patch/minor/major), avaliar se uma mudança é breaking change, ou entender o workflow de publish. Acionar ao mencionar 'release', 'publicar', 'versão', 'tag', 'semver', 'breaking change', 'GitHub Packages' ou 'bump'."
 ---
 
 # Nexus — Release & Publicação

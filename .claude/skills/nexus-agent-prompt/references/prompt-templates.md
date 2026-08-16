@@ -62,7 +62,7 @@ Abrir `[arquivo.html]` e mapear:
 ### 3. [Passo concreto de implementação]
 Arquivo: `src/components/[pasta]/[Nome].tsx`
 - Interface `[Nome]Props`
-- Importar do DS: `[componentes]` de `@nexus-creator-app/design-system`
+- Importar do DS: `[componentes]` de `@brigid-tech/design-system`
 - Tokens Tailwind: usar apenas classes `nex-*`
 - [Detalhe visual do design — copiar do HTML, não da issue se divergirem]
 

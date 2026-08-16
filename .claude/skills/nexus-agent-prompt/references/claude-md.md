@@ -62,7 +62,7 @@ Se qualquer dos três não estiver claro, **pare e pergunte**.
 ### 0.4. Outras regras inegociáveis
 - Package manager: **npm** (nunca pnpm/yarn)
 - Cliente nunca chama Supabase para dados de negócio — sempre via `src/api/client.ts`
-- Verificar `@nexus-creator-app/design-system` antes de criar qualquer componente visual
+- Verificar `@brigid-tech/design-system` antes de criar qualquer componente visual
 
 ---
 
@@ -81,7 +81,7 @@ Coração: sistema de @menções em tempo real (`@Kael.idade` → resolve para o
 |---|---|
 | Build | Vite |
 | UI | React 19 + TypeScript |
-| Design system | `@nexus-creator-app/design-system` (Tailwind v3 + shadcn/ui) |
+| Design system | `@brigid-tech/design-system` (Tailwind v3 + shadcn/ui) |
 | Roteamento | TanStack Router (file-based, `routeTree.gen.ts` é gerado) |
 | Server state | TanStack Query |
 | Client state | Zustand |
@@ -157,7 +157,7 @@ src/
 Antes de criar qualquer componente visual: verificar se já existe no DS.
 
 ```tsx
-import { Button, Card, cn } from '@nexus-creator-app/design-system'
+import { Button, Card, cn } from '@brigid-tech/design-system'
 ```
 
 Componentes disponíveis: `Button`, `Input`, `Textarea`, `Select`, `Badge`, `Mention`,

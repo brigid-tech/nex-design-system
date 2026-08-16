@@ -1,4 +1,4 @@
-# @nexus-creator-app/design-system
+# @brigid-tech/design-system
 
 Design system oficial do Nexus Creator — dark-first, cyan↔violeta, arcane editorial.
 Compatível com **Tailwind CSS v3** e **shadcn/ui**.
@@ -24,9 +24,9 @@ Crie um arquivo `.npmrc` na **raiz de cada projeto** que for consumir este pacot
 ### Instalar o pacote
 
 ```bash
-npm install @nexus-creator-app/design-system
+npm install @brigid-tech/design-system
 # ou
-pnpm add @nexus-creator-app/design-system
+pnpm add @brigid-tech/design-system
 ```
 
 > **Peer dependencies:** `react >= 18`, `react-dom >= 18`, `tailwindcss >= 3.4`
@@ -39,7 +39,7 @@ pnpm add @nexus-creator-app/design-system
 
 ```ts
 // src/main.tsx ou src/app/layout.tsx
-import '@nexus-creator-app/design-system/styles';
+import '@brigid-tech/design-system/styles';
 ```
 
 Isso injeta as **CSS custom properties** (`--nex-*`) e as fontes (Cinzel, Inter, JetBrains Mono).
@@ -49,13 +49,13 @@ Isso injeta as **CSS custom properties** (`--nex-*`) e as fontes (Cinzel, Inter,
 ```ts
 // tailwind.config.ts
 import type { Config } from 'tailwindcss';
-import nexPreset from '@nexus-creator-app/design-system/preset';
+import nexPreset from '@brigid-tech/design-system/preset';
 
 const config: Config = {
   presets: [nexPreset],
   content: [
     './src/**/*.{ts,tsx}',
-    './node_modules/@nexus-creator-app/design-system/dist/**/*.js',
+    './node_modules/@brigid-tech/design-system/dist/**/*.js',
   ],
 };
 
@@ -94,7 +94,7 @@ import {
   // Feedback
   Toast,
   Modal,
-} from '@nexus-creator-app/design-system';
+} from '@brigid-tech/design-system';
 ```
 
 ---
@@ -460,7 +460,7 @@ import {
   borderRadius,
   boxShadow,
   animation,
-} from '@nexus-creator-app/design-system/tokens';
+} from '@brigid-tech/design-system/tokens';
 
 colors.brand.cyan              // '#00D4FF'
 colors.entity.character.DEFAULT // '#8B5CF6'
@@ -472,7 +472,7 @@ colors.entity.place.bg         // 'rgba(16,185,129,0.15)'
 ## Utilitário `cn`
 
 ```ts
-import { cn } from '@nexus-creator-app/design-system';
+import { cn } from '@brigid-tech/design-system';
 
 <div className={cn('base-class', isActive && 'active-class', className)} />
 ```

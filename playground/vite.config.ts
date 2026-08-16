@@ -8,24 +8,24 @@ export default defineConfig({
     alias: [
       // Subpaths first — order matters
       {
-        find: "@nexus-creator-app/design-system/styles",
+        find: "@brigid-tech/design-system/styles",
         replacement: path.resolve(__dirname, "../src/styles/globals.css"),
       },
       {
-        find: "@nexus-creator-app/design-system/fonts",
+        find: "@brigid-tech/design-system/fonts",
         replacement: path.resolve(__dirname, "../src/styles/fonts.css"),
       },
       {
-        find: "@nexus-creator-app/design-system/preset",
+        find: "@brigid-tech/design-system/preset",
         replacement: path.resolve(__dirname, "../src/preset.ts"),
       },
       {
-        find: "@nexus-creator-app/design-system/tokens",
+        find: "@brigid-tech/design-system/tokens",
         replacement: path.resolve(__dirname, "../src/tokens/index.ts"),
       },
       // Root import last
       {
-        find: "@nexus-creator-app/design-system",
+        find: "@brigid-tech/design-system",
         replacement: path.resolve(__dirname, "../src/index.ts"),
       },
       // Resolve deps used by design-system source from playground's node_modules

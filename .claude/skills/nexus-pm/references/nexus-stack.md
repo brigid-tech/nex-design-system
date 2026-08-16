@@ -16,7 +16,7 @@ Este arquivo fornece contexto técnico sobre o projeto Nexus Creator para uso na
 
 ### Frontend
 - **Framework**: React (com TypeScript)
-- **Design System**: `@nexus-creator-app/design-system` — componentes, tokens de cor, tipografia
+- **Design System**: `@brigid-tech/design-system` — componentes, tokens de cor, tipografia
 - **Styling**: Tailwind CSS (utilitários base apenas — sem compiler customizado)
 - **Estado**: Inferir por complexidade — local (`useState`), global (Context/Zustand), server state (React Query ou SWR)
 - **Roteamento**: React Router ou framework equivalente
@@ -54,7 +54,7 @@ Este arquivo fornece contexto técnico sobre o projeto Nexus Creator para uso na
   /web          ← React frontend
   /api          ← Node.js + Hono backend
 /packages
-  /design-system ← @nexus-creator-app/design-system
+  /design-system ← @brigid-tech/design-system
   /shared        ← tipos e utilitários compartilhados
 ```
 

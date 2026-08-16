@@ -3,7 +3,7 @@
 Baseado em `src/tokens/` e `src/styles/globals.css`. Importar via:
 
 ```ts
-import { colors, fontFamily, fontSize, boxShadow, animation } from '@nexus-creator-app/design-system/tokens'
+import { colors, fontFamily, fontSize, boxShadow, animation } from '@brigid-tech/design-system/tokens'
 ```
 
 ---

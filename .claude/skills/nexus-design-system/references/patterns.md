@@ -165,7 +165,7 @@ aria-label="Descrição para ícone-only buttons"
 // src/components/shared/EntityForm.tsx — componente do APP (não do DS)
 // Usa primitivos do DS + lógica do app
 
-import { Button, FormField, Input, Select, SelectItem } from '@nexus-creator-app/design-system'
+import { Button, FormField, Input, Select, SelectItem } from '@brigid-tech/design-system'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CreateEntitySchema } from '@/types/entities'

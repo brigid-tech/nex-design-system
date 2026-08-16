@@ -1,4 +1,4 @@
-import { Toast, Button, Avatar } from "@nexus-creator-app/design-system";
+import { Toast, Button, Avatar } from "@brigid-tech/design-system";
 import { Undo2 } from "lucide-react";
 import { PageLayout, Panel } from "./PageLayout";
 

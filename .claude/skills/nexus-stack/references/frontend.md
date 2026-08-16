@@ -14,7 +14,7 @@
 | Tailwind CSS | v3 | utility-first styling |
 | date-fns | latest | manipulação de datas |
 | lucide-react | latest | ícones |
-| `@nexus-creator-app/design-system` | — | componentes e tokens |
+| `@brigid-tech/design-system` | — | componentes e tokens |
 
 **Alias de import:** `@/` → `src/`
 
@@ -288,7 +288,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 
 // 2. Design system
-import { Button, Card } from '@nexus-creator-app/design-system'
+import { Button, Card } from '@brigid-tech/design-system'
 
 // 3. Internos (@/)
 import { apiClient } from '@/api/client'

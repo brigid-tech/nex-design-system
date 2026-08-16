@@ -1,11 +1,11 @@
 ---
 name: nexus-design-system
-description: "Referência completa do pacote @nexus-creator-app/design-system na ótica de quem CONSTRÓI e mantém o DS (repo nex-design-system). Use este skill sempre que a conversa envolver: criar ou modificar componentes do DS, decidir a API pública de um componente, decidir se algo pertence ao DS ou ao app consumidor, revisar código de componentes existentes, mexer em tokens, preset ou barrels, ou discutir versionamento e quebra de API. Acionar mesmo que o usuário não mencione 'design system' explicitamente — qualquer menção a 'componente', 'token', 'API pública', 'botão', 'modal', 'cor da marca' ou 'identidade visual' neste repo já justifica a consulta."
+description: "Referência completa do pacote @brigid-tech/design-system na ótica de quem CONSTRÓI e mantém o DS (repo nex-design-system). Use este skill sempre que a conversa envolver: criar ou modificar componentes do DS, decidir a API pública de um componente, decidir se algo pertence ao DS ou ao app consumidor, revisar código de componentes existentes, mexer em tokens, preset ou barrels, ou discutir versionamento e quebra de API. Acionar mesmo que o usuário não mencione 'design system' explicitamente — qualquer menção a 'componente', 'token', 'API pública', 'botão', 'modal', 'cor da marca' ou 'identidade visual' neste repo já justifica a consulta."
 ---
 
 # Nexus Creator — Design System (ótica do autor)
 
-Repo `nex-design-system` → pacote `@nexus-creator-app/design-system`.
+Repo `nex-design-system` → pacote `@brigid-tech/design-system`.
 Dark-first, gradiente cyan → violet, arcane editorial.
 Tailwind CSS v3 + React 18 (peer `>=18`) + TypeScript strict. Build: tsup. Publicado no GitHub Packages.
 

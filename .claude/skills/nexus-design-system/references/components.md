@@ -1,6 +1,6 @@
 # Componentes — API Completa
 
-Baseado no código fonte real de `@nexus-creator-app/design-system`.
+Baseado no código fonte real de `@brigid-tech/design-system`.
 
 ---
 
@@ -464,7 +464,7 @@ Props: `initials` · `size?: number` (default 28) · `glow?: boolean`
 ## cn — utilitário de merge de classes
 
 ```ts
-import { cn } from '@nexus-creator-app/design-system'
+import { cn } from '@brigid-tech/design-system'
 
 <div className={cn('base-class', isActive && 'active-class', className)} />
 ```

@@ -18,7 +18,7 @@ Plataforma SaaS de worldbuilding com @menções em tempo real. Dark-first.
 
 | Repo | Conteúdo |
 |---|---|
-| `nex-design-system` | Design system `@nexus-creator-app/design-system` (este repo — `src/`) |
+| `nex-design-system` | Design system `@brigid-tech/design-system` (este repo — `src/`) |
 | `nex-core` | Frontend React (consome o DS) |
 | `nex-api` *(ou similar)* | API Hono — repo separado [confirmar nome] |
 
@@ -34,7 +34,7 @@ Plataforma SaaS de worldbuilding com @menções em tempo real. Dark-first.
 |---|---|---|
 | Build | Vite | ✅ definido |
 | UI | React **19** + TypeScript | ✅ definido |
-| Design System | `@nexus-creator-app/design-system` (Tailwind v3 + shadcn/ui) | ✅ definido |
+| Design System | `@brigid-tech/design-system` (Tailwind v3 + shadcn/ui) | ✅ definido |
 | Roteamento | TanStack Router (file-based, `routeTree.gen.ts` gerado) | ✅ definido |
 | Server state | TanStack Query | ✅ definido |
 | Client state | Zustand | ✅ definido |
@@ -87,7 +87,7 @@ src/
 **Alias de import:** `@/` aponta para `src/`
 
 ```ts
-import { Button } from '@nexus-creator-app/design-system'
+import { Button } from '@brigid-tech/design-system'
 import { useAuth } from '@/hooks/useAuth'
 import { apiClient } from '@/api/client'
 ```

@@ -226,7 +226,7 @@ interface ContainerProps { children: React.ReactNode }
 
 ```ts
 // Vem do DS — não recriar
-import { cn } from '@nexus-creator-app/design-system'
+import { cn } from '@brigid-tech/design-system'
 
 className={cn(
   'base-classes',

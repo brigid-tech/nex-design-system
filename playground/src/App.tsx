@@ -17,7 +17,7 @@ import {
   Avatar,
   Sidebar,
   type SidebarSection,
-} from "@nexus-creator-app/design-system";
+} from "@brigid-tech/design-system";
 import {
   Sparkles, Zap, Crown, Check, TriangleAlert, Trash2,
   UserRound, MapPin, Shield, Package, Skull, Calendar,
