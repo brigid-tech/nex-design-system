@@ -1,11 +1,13 @@
 import * as React from "react"
-import { AlertCircle } from "lucide-react"
+import { AlertCircle, CheckCircle2, TriangleAlert } from "lucide-react"
 import { cn } from "../../lib/cn"
 
 export interface FormFieldProps {
   label?: string
   hint?: string
   error?: string
+  success?: string
+  warning?: string
   required?: boolean
   htmlFor?: string
   children: React.ReactNode
@@ -17,7 +19,7 @@ export interface FormFieldProps {
  * The consumer must also pass `error` to the child Input/Select to apply field-level styles.
  */
 const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
-  ({ label, hint, error, required, htmlFor, children, className }, ref) => {
+  ({ label, hint, error, success, warning, required, htmlFor, children, className }, ref) => {
     return (
       <div ref={ref} className={cn("flex flex-col gap-1.5", className)}>
         {label && (
@@ -38,6 +40,16 @@ const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
           <span className="text-caption text-nex-error flex items-center gap-1">
             <AlertCircle size={12} />
             {error}
+          </span>
+        ) : warning ? (
+          <span className="text-caption text-nex-warning flex items-center gap-1">
+            <TriangleAlert size={12} />
+            {warning}
+          </span>
+        ) : success ? (
+          <span className="text-caption text-nex-success flex items-center gap-1">
+            <CheckCircle2 size={12} />
+            {success}
           </span>
         ) : hint ? (
           <span className="text-caption text-nex-text-tertiary">{hint}</span>
